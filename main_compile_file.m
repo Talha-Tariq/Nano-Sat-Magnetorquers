@@ -12,14 +12,16 @@ constants % All constants in one file.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Initial conditions.
-IC = [0 0 0 1 0.5 0.5 0.5].'; 
+IC = [0 0 0 1 0.1 0.1 0.1].'; 
+
+%IC = [0 0 0 1 0 -2*pi/orbit_period 0].'; %erase torque from dynamics eqn
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation time.
 t0 = 0; % s
-t_max = 10; % s  %60
-t_div = 100;    %1001
-t_span = linspace(t0,t_max,t_div); % Total simulatoin time.
+t_max = 100000; % s  %60
+t_div = 120001;    %1001
+t_span = linspace(t0,t_max,t_div); % Total simulation time.
 % t_span = [0 t_max];
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

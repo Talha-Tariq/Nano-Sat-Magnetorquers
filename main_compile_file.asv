@@ -12,15 +12,16 @@ constants % All constants in one file.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Initial conditions.
-IC = [0 0 0 1 0.01 0.02 -0.01].'; 
-IC2 = [0 0 0 1 0.01 0.02 -0.01].'; 
+IC = [0 0 0 1 0.1 0.1 0.1].'; 
+
+%IC = [0 0 0 1 0 -2*pi/orbit_period 0].'; %erase torque from dynamics eqn
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation time.
 t0 = 0; % s
-t_max = 60; % s
-t_div = 1001;
-t_span = linspace(t0,t_max,t_div); % Total simulatoin time.
+t_max = 100000; % s  %60
+t_div = 120001;    %1001
+t_span = linspace(t0,t_max,t_div); % Total simulation time.
 % t_span = [0 t_max];
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,8 +34,8 @@ waitbar_handle = waitbar(0,'Numerical Integration Progress');
 output_flag = 0;
 
 % Use any solver; I use these three the most. 
-[t,x_out] = ode45(@ODEs,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
-[t,x_out] = ode45(@ODEs,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
+[t,x_out1] = ode45(@ODEstest,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
+[t,x_out2] = ode45(@ODEs,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
 % [t,x_out] = ode15s(@ODEs,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
 % [t,x_out] = ode113(@ODEs,t_span,IC,options,output_flag,dummy_matix,t_span,waitbar_handle);
 
@@ -49,14 +50,15 @@ time_stamp = toc
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot omega and epsilon data vs. time
-plot_script_v1
+%plot_script_v1
 
 % Check if f() = mag(epsilon)^2 + mag(eta)^2 - 1 = 0 to see if code is fine
-accuracy_check
+%accuracy_check
 
 % Check if energy is constant
-energy_check
+%energy_check
 
+sim_data
 MagMatrix
 
 %Test

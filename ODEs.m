@@ -26,10 +26,22 @@ assignin('base','b_out',b);
 
 dot_eps = (0.5)*(eta*eye(3) + eps_x)*omega; 
 dot_eta = (0.5)*(-transpose(eps)*omega);
-torque = -c*omega - k*eps;
-dot_omega = inv(inertia)*(-omega_x * inertia * omega + torque);
+torque_d = -c*omega - k*eps;
 
+
+r = [altitude*cos((2*pi/orbit_period)*t), 0*t, altitude*sin((2*pi/orbit_period)*t)];
+
+b_eci = EarthMagField(r.', t);
+
+rotation_mat = (2*(eta^2) - 1)*eye(3) + 2*eps*(eps.') - 2*eta*crossop(eps);
+
+b_body = rotation_mat * b_eci;
+
+torque_t = torque_d - (dot(torque_d,b_body)*b_body)/norm(b_body)^2;
+
+dot_omega = inv(inertia)*(-omega_x * inertia * omega + torque_t);
 dot_x = [dot_eps; dot_eta; dot_omega];
+
 
 %{
 x1 = x(1);

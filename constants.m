@@ -12,7 +12,23 @@ omega = 10;; % rad/s, frequency of forcing function.
 
 Re = 6371.2*1000; %radius of earth in m
 altitude = 200*1000 + Re; %200,000 m from surface
-inertia = [1/600, 0, 0;0, 1/600, 0;0, 0, 1/600]; %[5, 0, 0;0, 10, 0;0, 0, 15]
+inertia = [0.1043 + (4.54*10e-7), 0, 0; 0, 0.1020 + (4.54*10e-7), 0; 0, 0, 0.0031 + (4.54*10e-7)]; %1kg mass 
+%inertia = [1/600, 0, 0;0, 1/600, 0;0, 0, 1/600];
 dummy_matix = blkdiag([1 2; 3 4], 1);
-k = 1; %c^2/(4*norm(inertia)) %spring constant %0.75
-c = 0.01; %damping constant %1.5
+
+
+%testing
+k = 0.0000001; %c^2/(4*norm(inertia)) %spring constant 
+c = 0.00005; %damping constant 
+orbit_period = 5400; %secs = 90 mins
+
+
+%{
+k = 0.0000001; %c^2/(4*norm(inertia)) %spring constant 
+c = 2*sqrt(k)*0.15; %damping constant  
+orbit_period = 5400; %secs = 90 mins
+%}
+
+
+
+

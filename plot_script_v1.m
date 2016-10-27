@@ -42,6 +42,33 @@ ylabel('$\epsilon_3$','fontsize',font_size,'Interpreter','latex');
 set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
 grid on
 
+%epsilon vs log10(time)
+
+figure
+subplot(3,1,1)
+plot(log10(t),x_out(:,1),'Linewidth',line_width); % eps1 vs log(time)
+hold on
+xlabel('log10(time) (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\epsilon_1$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+
+subplot(3,1,2)
+plot(log10(t),x_out(:,2),'Linewidth',line_width); %eps2 vs log(time)
+hold on
+xlabel('log10(time) (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\epsilon_2$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+
+subplot(3,1,3)
+plot(log10(t),x_out(:,3),'Linewidth',line_width); %eps3 vs log(time)
+hold on
+xlabel('log10(time) (s)','fontsize',font_size,'Interpreter','latex');
+ylabel('$\epsilon_3$','fontsize',font_size,'Interpreter','latex');
+set(gca,'XMinorGrid','off','GridLineStyle','-','FontSize',line_size)
+grid on
+
 %omega vs time
 
 figure
