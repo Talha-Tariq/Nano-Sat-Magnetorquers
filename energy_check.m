@@ -1,7 +1,4 @@
 
-% Call constants
-constants
-
 % Font size, line size, and line width. 
 font_size = 15;
 line_size = 15;
